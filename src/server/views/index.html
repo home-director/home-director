@@ -1,0 +1,33 @@
+<html>
+<head>
+  <title>Thing</title>
+  <link rel="stylesheet" href="/css/build/main.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+</body>
+<!-- <ol>
+  {% for event in deviceDb.activityStream %}
+    <li>{{ event.name }}: {{ event.text }}  </li>
+  {% endfor %}
+</ol> -->
+<ol class="thing-list">
+  {% for id, device in deviceDb.devices %}
+    <li class="thing" data-id="{{ id }}" data-primary-attribute="{{ device.primaryAttribute }}">
+      <div class="thing__name">{{ device.name }}</div>
+      <div class="thing__attributes">
+      {% for attribName, attrib in device.attributes %}
+        <div class="thing__attribute thing__attribute--{{ attribName }}{% if device.primaryAttribute == attribName %} thing__attribute--primary{% endif %}">
+          <span class="thing__attribute-name">{{ attribName }}</span>
+          <span class="thing__attribute-value">{{ attrib.value }}</span>
+        </div>
+      {% endfor %}
+      </div>
+    </li>
+  {% endfor %}
+</ol>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/build/client.js"></script>
+</body>
+</html>

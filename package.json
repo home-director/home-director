@@ -1,0 +1,33 @@
+{
+  "name": "home-director",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "node ./bin/www",
+    "watch-sass": "node-sass src/sass/main.scss public/css/build/main.css -w --source-map true --source-map-contents true",
+    "build-dev": "browserify src/client/client.js -o public/js/build/client.js --debug && node-sass src/sass/main.scss public/css/build/main.css --source-map true --source-map-contents true",
+    "build": "browserify src/client/client.js -o public/js/build/client.js && node-sass src/sass/main.scss public/css/build/main.css",
+    "dev": "npm run build-dev && npm run watch-sass & watchify src/client/client.js -o public/js/build/client.js --debug & nodemon ./bin/www --watch src/server --delay 1",
+    "postinstall": "mkdir -p public/css/build public/js/build && npm run build"
+  },
+  "dependencies": {
+    "body-parser": "~1.12.0",
+    "browserify": "^13.0.0",
+    "cookie-parser": "~1.3.4",
+    "debug": "~2.1.1",
+    "dotenv": "^2.0.0",
+    "envloader": "0.0.3",
+    "express": "~4.12.2",
+    "moment": "^2.13.0",
+    "morgan": "~1.5.1",
+    "node-fetch": "^1.5.1",
+    "node-sass": "^3.6.0",
+    "nunjucks": "~2.4.2",
+    "serve-favicon": "~2.2.0",
+    "socket.io": "~1.4.6",
+    "with-env": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2",
+    "watchify": "^3.7.0"
+  }
+}

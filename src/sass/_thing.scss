@@ -1,0 +1,155 @@
+.thing-list {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.thing {
+  list-style: none;
+  flex-grow: 1;
+  // min-width: 200px;
+  width: calc(50% - 10px);
+  text-align: center;
+  margin: 5px;
+  // padding: 10px;
+  background-color: #444;
+  transition: background-color 1s, transform 250ms;
+}
+
+
+//
+// @media (min-width: 800px)  {
+//   .thing {
+//     min-width: 200px;
+//     width: 25%;
+//   }
+// }
+
+.thing--updated {
+  // background-color: #aaaa00;
+  animation-duration: 200ms;
+  animation-name: bounce;
+}
+
+.thing__attributes {
+  padding: 5px;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.thing__attribute {
+  padding: 5px;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.thing__attribute--primary {
+  width: 100%;
+  order: -1;
+  font-size: 200%;
+  background-color: transparent;
+
+  .thing__attribute-name {
+    display: none;
+  }
+}
+
+
+.thing__attribute--updated {
+  animation-duration: 500ms;
+  animation-name: pulsate;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.thing__name {
+  background: rgba(255,255,255,0.2);
+  padding: 5px;
+  text-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.thing__attribute-name {
+  font-size: 0.8rem;
+  display: block;
+  color: #222;
+
+  // text-shadow: 0 0 1px rgba(0,0,0,0.5);
+
+}
+
+.thing__attribute-value {
+  // text-transform: capitalize;
+  text-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.thing__attribute--heartbeat,
+.thing__attribute--checkInterval,
+.thing__attribute--hue,
+.thing__attribute--saturation,
+.thing__attribute--colorTemperature,
+.thing__attribute--color,
+.thing__attribute--threeAxis,
+.thing__attribute--acceleration,
+.thing__attribute--lqi,
+.thing__attribute--contact,
+.thing__attribute--rssi {
+  display: none;
+}
+
+.thing__attribute--temperature::after {
+  content: "℃"
+}
+
+.thing__attribute--battery::after {
+  content: "%"
+}
+
+.thing__attribute--power::after {
+  content: "W"
+}
+
+@media (min-width: 800px)  {
+  .thing {
+    // min-width: 200px;
+    width: calc(25% - 40px);
+    margin: 10px;
+    font-size: 1.5rem;
+  }
+
+  .thing__attributes {
+    padding: 10px;
+    font-size: 1.5rem;
+  }
+
+  .thing__attribute {
+    padding: 10px;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulsate {
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
