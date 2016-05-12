@@ -1,10 +1,29 @@
-# home-director
-Simple, browser based home automation
+# Home Director
+
+Simple, self-hosted, browser based home automation
+
+## Current status
+
+- Supplies a self-hosted smart home server able to take updates from Samsung SmartThings
+- Comes with code to install as a SmartThings Smart App
+- Has a simple view-only dashboard showing the status of your devices
+- Dashboard updates in real-time
+- Works on Chrome and iOS Safari as a minimum
 
 ## Prerequisites
 
 - a web server accessible from the internet
 - a Samsung SmartThings hub and developer account
+
+## Security warning
+
+This project is not yet ready for use. It should be considered pre-alpha quality. Use it at your own risk.
+
+The code does not yet supply any security whatsoever. It is highly recommended to supply your own (not self-signed) HTTPS certificate for your server. Once installed on an internet facing server (required for SmartThings to talk to it) anyone with knowledge of the URL will be able to view your dashboard. Furthermore, updates from SmartThings are not yet validated in any way and are open to spoofing.
+
+Future security goals include:
+- Plugin-based user authentication, probably using Node passport
+- Secure coommunications from SmartThings using server-side secret tokens
 
 ## Getting started
 
