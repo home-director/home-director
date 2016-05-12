@@ -25,7 +25,7 @@ The code does not yet supply any security whatsoever. It is highly recommended t
 
 Future security goals include:
 - Plugin-based user authentication, probably using Node passport
-- Secure coommunications from SmartThings using server-side secret tokens
+- Secure communications from SmartThings using server-side secret tokens
 
 ## Getting started
 
