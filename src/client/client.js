@@ -1,14 +1,33 @@
+var moment = require('moment');
+
 function setPrimaryAttributes() {
+  var updatedTime;
+
   var allThings = Array.prototype.slice.call(document.querySelectorAll('.thing'));
 
   allThings.forEach(function(thing) {
     var primaryAttribute = thing.dataset.primaryAttribute;
     thing._primaryValue = thing.querySelector('.thing__attribute--' + primaryAttribute + ' .thing__attribute-value').innerText;
     thing._hasColor = !!thing.querySelector('.thing__attribute--color');
+    var timeEl = thing.querySelector('.thing__attribute-time');
+
+    timeEl._updatedTime = moment(parseInt(timeEl.dataset.timestamp));
 
     setColor(thing);
   });
+
+  updateTimes();
 }
+
+function updateTimes() {
+  var allTimestamps = Array.prototype.slice.call(document.querySelectorAll('.thing__attribute-time'));
+
+  allTimestamps.forEach(function(timeEl) {
+    timeEl.innerText = timeEl._updatedTime.toNow(true) + ' ago ' + (timeEl._updatedTime.calendar().toLowerCase());
+  });
+}
+
+setInterval(updateTimes, 30000);
 
 function setColor(thing) {
   var color, level;
@@ -53,12 +72,20 @@ var socket = io();
  socket.on('update', function(data) {
    var thingEl = document.querySelector('.thing[data-id="' + data.device + '"]');
    var attribEl = thingEl.querySelector('.thing__attribute--' + data.attribute + ' .thing__attribute-value');
+   var timeEl = thingEl.querySelector('.thing__attribute-time');
+   var updatedTime = moment.utc(data.date.time);
+
    if (attribEl) {
+     if (attribEl.innerText == data.value) return; // no change
      attribEl.innerText = data.value;
    }
 
    if (data.attribute === thingEl.dataset.primaryAttribute) {
      thingEl._primaryValue = data.value;
+     if (timeEl) {
+       timeEl._updatedTime = updatedTime;
+       timeEl.innerText = updatedTime.toNow(true) + ' ago';
+     }
    }
 
    clearTimeout(thingEl._animTimer);

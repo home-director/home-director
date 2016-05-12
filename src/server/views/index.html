@@ -21,6 +21,7 @@
         <div class="thing__attribute thing__attribute--{{ attribName }}{% if device.primaryAttribute == attribName %} thing__attribute--primary{% endif %}">
           <span class="thing__attribute-name">{{ attribName }}</span>
           <span class="thing__attribute-value">{{ attrib.value }}</span>
+          {% if device.primaryAttribute == attribName %}<span class="thing__attribute-time" data-timestamp="{{ attrib.lastUpdated.valueOf() }}">{{ attrib.lastUpdated.toNow(true) }} ago {{ attrib.lastUpdated.calendar().toLowerCase() }}</span>{% endif %}
         </div>
       {% endfor %}
       </div>
