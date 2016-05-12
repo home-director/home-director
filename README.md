@@ -2,6 +2,8 @@
 
 Simple, self-hosted, browser based home automation
 
+![dashboard screenshot](https://s3-eu-west-1.amazonaws.com/home-director/github-screenshot.png)
+
 ## Current status
 
 - Supplies a self-hosted smart home server able to take updates from Samsung SmartThings
