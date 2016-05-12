@@ -73,7 +73,7 @@ var socket = io();
    var thingEl = document.querySelector('.thing[data-id="' + data.device + '"]');
    var attribEl = thingEl.querySelector('.thing__attribute--' + data.attribute + ' .thing__attribute-value');
    var timeEl = thingEl.querySelector('.thing__attribute-time');
-   var updatedTime = moment.utc(data.date.time);
+   var updatedTime = moment(data.date.time);
 
    if (attribEl) {
      if (attribEl.innerText == data.value) return; // no change
